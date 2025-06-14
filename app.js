@@ -13,6 +13,9 @@ const getDetails=async (search_id)=>{
 document.getElementById('search-btn').addEventListener('click',(event)=>{
     const search_name=document.getElementById('search-box').value;
     loadData(search_name);
+    const card_details=document.getElementById('card-details');
+    card_details.className=" ";
+    card_details.innerHTML=" ";
 });
 
 const displayData=(meal_data)=>{
@@ -52,6 +55,7 @@ const displayDetails=(details_data)=>{
     const individual_data=details_data.meals[0];
     console.log(individual_data);
     const card_details = document.getElementById('card-details');
+    card_details.classList.add('card', 'm-2', 'text-center', 'shadow', 'rounded', 'p-2');
     card_details.innerHTML=`
         <img src="${individual_data.strMealThumb}" class="card-img-top" alt="${individual_data.strMeal}">
     `;
