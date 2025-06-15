@@ -45,6 +45,7 @@ const displayData=(meal_data)=>{
         card_container.appendChild(div);
         div.addEventListener('click',(event)=>{
             getMealID(`${data.idMeal}`);
+            card_container.innerHTML=" ";
         })
     })
 };
@@ -53,10 +54,22 @@ const getMealID=(idMeal)=>{
 };
 const displayDetails=(details_data)=>{
     const individual_data=details_data.meals[0];
-    console.log(individual_data);
     const card_details = document.getElementById('card-details');
-    card_details.classList.add('card', 'm-2', 'text-center', 'shadow', 'rounded', 'p-2');
+    card_details.classList.add('card', 'm-2', 'shadow', 'rounded', 'p-2');
+    card_details.style.width="30rem";
+    let ingredient_list='';
+    for(let i=0; i<=20; i++){
+        const ingredients=individual_data[`strIngredient${i}`];
+        if(ingredients && ingredients.trim() !==''){
+            ingredient_list+=`<li>${ingredients}</li>`;
+        }
+    }
     card_details.innerHTML=`
         <img src="${individual_data.strMealThumb}" class="card-img-top" alt="${individual_data.strMeal}">
+        <h2>${individual_data.strMeal}</h2>
+        <h3>Ingredients</h3>
+        <ul>
+            ${ingredient_list}
+        </ul>
     `;
 }
